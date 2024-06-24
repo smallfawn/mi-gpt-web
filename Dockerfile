@@ -18,6 +18,7 @@ COPY ./server .
 # Install PM2 globally
 RUN npm install pm2 -g
 
+
 # Expose backend port (not needed to map externally)
 EXPOSE 3344
 
