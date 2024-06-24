@@ -1,5 +1,5 @@
 # Stage 1: Build frontend Vue.js application
-FROM node:20 AS frontend-builder
+FROM node:lts AS frontend-builder
 
 WORKDIR /app
 COPY ./web/package*.json ./
@@ -8,7 +8,7 @@ COPY ./web .
 RUN npm run build
 
 # Stage 2: Setup backend Node.js application
-FROM node:20 AS backend
+FROM node:lts AS backend
 
 WORKDIR /app
 COPY ./server/package*.json ./
@@ -25,7 +25,7 @@ EXPOSE 3344
 CMD ["pm2-runtime", "index.js", "--watch", "--no-daemon"]
 
 # Stage 3: Setup Nginx to serve frontend and proxy backend
-FROM nginx:latest
+FROM nginx:alpine
 
 # Copy built frontend from frontend-builder stage
 COPY --from=frontend-builder /app/dist /usr/share/nginx/html
