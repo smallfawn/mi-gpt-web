@@ -1,0 +1,61 @@
+{
+  "userId": "",
+  "password": "",
+  "did": "小爱音箱Pro",
+  "callAIKeywords": [
+    "请",
+    "你",
+    "傻妞"
+  ],
+  "wakeUpKeywords": [
+    "打开",
+    "进入",
+    "召唤"
+  ],
+  "exitKeywords": [
+    "关闭",
+    "退出",
+    "再见"
+  ],
+  "onEnterAI": [
+    "你好，我是傻妞，很高兴认识你"
+  ],
+  "onExitAI": [
+    "傻妞已退出"
+  ],
+  "onAIAsking": [
+    "让我先想想",
+    "请稍等"
+  ],
+  "onAIReplied": [
+    "我说完了",
+    "还有其他问题吗"
+  ],
+  "onAIError": [
+    "啊哦，出错了，请稍后再试吧！"
+  ],
+  "ttsCommand": [
+    5,
+    1
+  ],
+  "wakeUpCommand": [
+    5,
+    3
+  ],
+  "playingCommand": [
+    3,
+    1,
+    1
+  ],
+  "tts": "xiaoai",
+  "switchSpeakerKeywords": [
+    "把声音换成"
+  ],
+  "streamResponse": true,
+  "exitKeepAliveAfter": 30,
+  "checkTTSStatusAfter": 3,
+  "checkInterval": 1000,
+  "debug": false,
+  "enableTrace": false,
+  "timeout": 5000
+}

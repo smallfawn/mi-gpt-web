@@ -1,0 +1,41 @@
+name: Docker Build and Deploy
+
+on:
+  push:
+    branches:
+      - main  # 当 main 分支有提交时触发构建
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # 构建前端 Vue.js 应用
+      - name: Build frontend
+        run: |
+          cd web
+          npm install
+          npm run build
+
+      # 构建后端 Node.js 应用
+      - name: Build backend
+        run: |
+          cd server
+          npm install
+
+      # 构建带有 Nginx 反向代理的 Docker 镜像
+      - name: Build Docker image
+        run: |
+          docker build -t smallfawn/mi-gpt-web .
+
+      # 登录 Docker Hub，推送 Docker 镜像
+      - name: Push Docker image to Docker Hub
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker push smallfawn/mi-gpt-web
