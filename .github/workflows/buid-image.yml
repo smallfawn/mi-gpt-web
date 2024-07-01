@@ -13,23 +13,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # 构建前端 Vue.js 应用
-      - name: Build frontend
-        run: |
-          cd web
-          npm install
-          npm run build
-
-      # 构建后端 Node.js 应用
-      - name: Build backend
-        run: |
-          cd server
-          npm install
-
-      # 构建带有 Nginx 反向代理的 Docker 镜像
       - name: Build Docker image
         run: |
-          docker build -t smallfawn/mi-gpt-web .
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/mi-gpt-web .
 
       # 登录 Docker Hub，推送 Docker 镜像
       - name: Push Docker image to Docker Hub
